@@ -27,23 +27,19 @@ function addToCart(item) {
   return cart
 }
 
-
 function viewCart() {
-  if (cart.length > 0) {
-    var str = ""    
-      for (var i = 0, l = cart.length; i < l; i++) {
-        var pair = cart[i]
-        var itemName = Object.keys(pair)[0]
-        var itemPrice = pair[itemName]
-        str += (` ${itemName} at $${itemPrice},`);
-      }
-      str = str.slice(0, -1)
-      str = "In your cart, you have" + str + "."
-    console.log(str); 
-  } else {
+  if (cart.length === 0) {
     return ("Your shopping cart is empty.");
   }
+  var str = ""
+    for (var item in cart) {
+      str += (` ${Object.keys(cart[item])} at $${(cart[item])[Object.keys(cart[item])]},`)
+  }
+      str = str.slice(0, -1)
+      str = "In your cart, you have" + str + "."
+      console.log(str)
 }
+
 
 function removeFromCart(item) {
   var itemExists = false
